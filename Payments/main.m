@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PaymentGateway.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -25,6 +26,10 @@ int main(int argc, const char * argv[]) {
         NSString * choice = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
         choice = [choice stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
         NSInteger * paymentChoice = [choice intValue];
+        
+        // Instantiate Payment gateway
+        PaymentGateway * paymentGateway = [PaymentGateway new];
+        [paymentGateway processPaymentAmount:amount];
         
     }
     return 0;
