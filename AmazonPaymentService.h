@@ -11,6 +11,7 @@
 
 @interface AmazonPaymentService : NSObject <PaymentDelegate>
 
--(void) processPaymentAmount: (NSInteger) number;
+-(void) processPaymentAmount: (CGFloat) number;
+-(BOOL) canProcessPayment;
 
 @end

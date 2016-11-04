@@ -1,17 +1,17 @@
 //
-//  StripePaymentService.m
+//  ApplePaymentService.m
 //  Payments
 //
 //  Created by Erin Luu on 2016-11-04.
 //  Copyright © 2016 Erin Luu. All rights reserved.
 //
 
-#import "StripePaymentService.h"
+#import "ApplePaymentService.h"
 
-@implementation StripePaymentService
+@implementation ApplePaymentService
 
 -(void) processPaymentAmount: (CGFloat) number {
-    NSLog(@"Stripe processed amount: $%.2f.",number);
+    NSLog(@"ApplePay processed amount: $%.2f.",number);
 }
 
 -(BOOL) canProcessPayment {

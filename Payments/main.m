@@ -11,6 +11,7 @@
 #import "PaypalPaymentService.h"
 #import "StripePaymentService.h"
 #import "AmazonPaymentService.h"
+#import "ApplePaymentService.h"
 
 
 @class  PaypalPaymentService;
@@ -18,8 +19,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Setup amount and payment methods
-        CGFloat amount = arc4random_uniform(900)+100;
-        NSArray * paymentMethods = @[@"Paypal", @"Stripe", @"Amazon"];
+        CGFloat amount = (arc4random_uniform(90000)+10000)/100.0;
+        NSArray * paymentMethods = @[@"Paypal", @"Stripe", @"Amazon", @"ApplePay"];
         
         NSLog(@"Your total today is $%.2f.", amount);
         NSLog(@"Please select your payment method:");
@@ -56,6 +57,12 @@ int main(int argc, const char * argv[]) {
             {
                 AmazonPaymentService * amazon = [AmazonPaymentService new];
                 paymentGateway.delegate = amazon;
+                [paymentGateway processPaymentAmount:amount];
+            }
+            case 4:
+            {
+                ApplePaymentService * apple = [ApplePaymentService new];
+                paymentGateway.delegate = apple;
                 [paymentGateway processPaymentAmount:amount];
             }
                 break;

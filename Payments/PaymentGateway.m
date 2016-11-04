@@ -10,8 +10,13 @@
 
 @implementation PaymentGateway
 
--(void) processPaymentAmount: (NSInteger) number {
-    [self.delegate processPaymentAmount:number];
+-(void) processPaymentAmount: (CGFloat) number {
+    if ([self.delegate canProcessPayment]) {
+        [self.delegate processPaymentAmount:number];
+    } else {
+        NSLog(@"Payment can't be processed.");
+    }
+    
 
 }
 

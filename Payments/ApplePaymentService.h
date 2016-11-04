@@ -1,5 +1,5 @@
 //
-//  StripePaymentService.h
+//  ApplePaymentService.h
 //  Payments
 //
 //  Created by Erin Luu on 2016-11-04.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PaymentGateway.h"
 
-@interface StripePaymentService : NSObject <PaymentDelegate>
+@interface ApplePaymentService : NSObject <PaymentDelegate>
 
 -(void) processPaymentAmount: (CGFloat) number;
 -(BOOL) canProcessPayment;
