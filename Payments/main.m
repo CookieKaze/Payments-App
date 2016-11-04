@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "PaymentGateway.h"
+#import "PaypalPaymentService.h"
+#import "StripePaymentService.h"
+#import "AmazonPaymentService.h"
+
+
+@class  PaypalPaymentService;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -25,11 +31,40 @@ int main(int argc, const char * argv[]) {
         fgets(input, 100, stdin);
         NSString * choice = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
         choice = [choice stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSInteger * paymentChoice = [choice intValue];
+        NSInteger paymentChoice = [choice intValue];
         
-        // Instantiate Payment gateway
+        // Instantiate payment gateway
         PaymentGateway * paymentGateway = [PaymentGateway new];
-        [paymentGateway processPaymentAmount:amount];
+        
+        // Instantiate payment methods and process payment
+        switch (paymentChoice) {
+            case 1:
+            {
+                PaypalPaymentService * paypal = [PaypalPaymentService new];
+                paymentGateway.delegate = paypal;
+                [paymentGateway processPaymentAmount:amount];
+            }
+                break;
+            case 2:
+            {
+                StripePaymentService * stripe = [StripePaymentService new];
+                paymentGateway.delegate = stripe;
+                [paymentGateway processPaymentAmount:amount];
+            }
+                break;
+            case 3:
+            {
+                AmazonPaymentService * amazon = [AmazonPaymentService new];
+                paymentGateway.delegate = amazon;
+                [paymentGateway processPaymentAmount:amount];
+            }
+                break;
+            default:
+                break;
+        }
+        
+        
+        
         
     }
     return 0;
